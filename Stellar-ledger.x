@@ -48,6 +48,8 @@ struct StellarValue
         struct
         {
             Hash txSetHash;
+            Hash previousLedgerHash;
+            uint32 previousLedgerVersion;
             LedgerCloseValueSignature lcValueSignature;
         } originalValue;
     }
