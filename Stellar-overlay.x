@@ -124,7 +124,11 @@ enum MessageType
     TIME_SLICED_SURVEY_REQUEST = 21,
     TIME_SLICED_SURVEY_RESPONSE = 22,
     TIME_SLICED_SURVEY_START_COLLECTING = 23,
-    TIME_SLICED_SURVEY_STOP_COLLECTING = 24
+    TIME_SLICED_SURVEY_STOP_COLLECTING = 24,
+
+    // Experimental: announces possession of a tx set to direct peers so
+    // their fetchers can target a peer that actually has the data.
+    HAS_TX_SET = 25
 };
 
 struct DontHave
@@ -292,6 +296,11 @@ struct FloodDemand
     TxDemandVector txHashes;
 };
 
+struct HasTxSet
+{
+    Hash txSetHash;
+};
+
 union StellarMessage switch (MessageType type)
 {
 case ERROR_MSG:
@@ -347,6 +356,8 @@ case FLOOD_ADVERT:
      FloodAdvert floodAdvert;
 case FLOOD_DEMAND:
      FloodDemand floodDemand;
+case HAS_TX_SET:
+     HasTxSet hasTxSet;
 };
 
 union AuthenticatedMessage switch (uint32 v)
