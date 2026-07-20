@@ -128,7 +128,7 @@ enum MessageType
 
     // Experimental: announces possession of a tx set to direct peers so
     // their fetchers can target a peer that actually has the data.
-    HAS_TX_SET = 25
+    HAVE_TX_SET = 25
 };
 
 struct DontHave
@@ -296,7 +296,7 @@ struct FloodDemand
     TxDemandVector txHashes;
 };
 
-struct HasTxSet
+struct HaveTxSet
 {
     Hash txSetHash;
 };
@@ -356,8 +356,8 @@ case FLOOD_ADVERT:
      FloodAdvert floodAdvert;
 case FLOOD_DEMAND:
      FloodDemand floodDemand;
-case HAS_TX_SET:
-     HasTxSet hasTxSet;
+case HAVE_TX_SET:
+     HaveTxSet haveTxSet;
 };
 
 union AuthenticatedMessage switch (uint32 v)
